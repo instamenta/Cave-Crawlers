@@ -22099,6 +22099,51 @@
           ]
         }
       ]
+    },
+    {
+      "additive": false,
+      "assetStoreId": "",
+      "destroyWhenNoParticles": true,
+      "emitterAngleA": 0,
+      "emitterAngleB": 90,
+      "emitterForceMax": 0,
+      "emitterForceMin": 0,
+      "flow": 2,
+      "maxParticleNb": 300,
+      "name": "DeathParticle",
+      "particleAlpha1": 255,
+      "particleAlpha2": 0,
+      "particleAlphaRandomness1": 0,
+      "particleAlphaRandomness2": 0,
+      "particleAngle1": 30,
+      "particleAngle2": 180,
+      "particleAngleRandomness1": 0,
+      "particleAngleRandomness2": 0,
+      "particleBlue1": 255,
+      "particleBlue2": 45,
+      "particleGravityX": 0,
+      "particleGravityY": -80,
+      "particleGreen1": 255,
+      "particleGreen2": 45,
+      "particleLifeTimeMax": 3,
+      "particleLifeTimeMin": 3,
+      "particleRed1": 255,
+      "particleRed2": 255,
+      "particleSize1": 100,
+      "particleSize2": 120,
+      "particleSizeRandomness1": 0,
+      "particleSizeRandomness2": 0,
+      "rendererParam1": 1,
+      "rendererParam2": 1,
+      "rendererType": "Quad",
+      "tags": "",
+      "tank": 1,
+      "textureParticleName": "assets\\Player_Fall_2.png",
+      "type": "ParticleSystem::ParticleEmitter",
+      "zoneRadius": 0,
+      "variables": [],
+      "effects": [],
+      "behaviors": []
     }
   ],
   "objectsGroups": [],
@@ -22124,7 +22169,7 @@
         "gridColor": 10401023,
         "gridAlpha": 0.8,
         "snap": false,
-        "zoomFactor": 2.584445755394061,
+        "zoomFactor": 1.82747911924793,
         "windowMask": false
       },
       "objectsGroups": [],
@@ -23794,6 +23839,36 @@
           "numberProperties": [],
           "stringProperties": [],
           "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": true,
+          "height": 226,
+          "layer": "",
+          "name": "leftBoundary",
+          "persistentUuid": "9fa03840-2f6d-4446-b1af-1825fb87a131",
+          "width": 32,
+          "x": 87,
+          "y": 35,
+          "zOrder": 1002,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": true,
+          "height": 242,
+          "layer": "",
+          "name": "rightBoundary",
+          "persistentUuid": "63085240-c12b-42b5-839b-1c695b5b8718",
+          "width": 32,
+          "x": 647,
+          "y": 15,
+          "zOrder": 1003,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
         }
       ],
       "objects": [
@@ -23813,8 +23888,54 @@
       "events": [
         {
           "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "value": "DepartScene"
+              },
+              "parameters": [
+                ""
+              ]
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "value": "FlipX"
+              },
+              "parameters": [
+                "House",
+                "yes"
+              ]
+            },
+            {
+              "type": {
+                "value": "SetFullScreen"
+              },
+              "parameters": [
+                "",
+                "yes",
+                "no"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "BuiltinCommonInstructions::Standard",
           "conditions": [],
           "actions": [
+            {
+              "type": {
+                "value": "SetCenter"
+              },
+              "parameters": [
+                "QuestMark",
+                "=",
+                "Player.CenterX()",
+                "=",
+                "Player.CenterY()-24"
+              ]
+            },
             {
               "type": {
                 "value": "ZoomCamera"
@@ -23837,26 +23958,645 @@
                 "",
                 ""
               ]
-            },
+            }
+          ]
+        },
+        {
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
             {
               "type": {
-                "value": "SetCenter"
+                "value": "KeyPressed"
               },
               "parameters": [
-                "QuestMark",
-                "=",
-                "Player.CenterX()",
-                "=",
-                "Player.CenterY()-24"
+                "",
+                "a"
               ]
-            },
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "value": "PlatformBehavior::SimulateControl"
+              },
+              "parameters": [
+                "Player",
+                "PlatformerObject",
+                "\"Left\""
+              ]
+            }
+          ]
+        },
+        {
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "value": "KeyPressed"
+              },
+              "parameters": [
+                "",
+                "d"
+              ]
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "value": "PlatformBehavior::SimulateControl"
+              },
+              "parameters": [
+                "Player",
+                "PlatformerObject",
+                "\"Right\""
+              ]
+            }
+          ]
+        },
+        {
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "value": "KeyPressed"
+              },
+              "parameters": [
+                "",
+                "w"
+              ]
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "value": "PlatformBehavior::SimulateControl"
+              },
+              "parameters": [
+                "Player",
+                "PlatformerObject",
+                "\"Up\""
+              ]
+            }
+          ]
+        },
+        {
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "value": "KeyPressed"
+              },
+              "parameters": [
+                "",
+                "s"
+              ]
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "value": "PlatformBehavior::SimulateControl"
+              },
+              "parameters": [
+                "Player",
+                "PlatformerObject",
+                "\"Down\""
+              ]
+            }
+          ]
+        },
+        {
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "value": "KeyPressed"
+              },
+              "parameters": [
+                "",
+                "d"
+              ]
+            }
+          ],
+          "actions": [
             {
               "type": {
                 "value": "FlipX"
               },
               "parameters": [
-                "House",
+                "Player",
+                "ThreeDFlip"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "value": "KeyPressed"
+              },
+              "parameters": [
+                "",
+                "a"
+              ]
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "value": "FlipX"
+              },
+              "parameters": [
+                "Player",
                 "yes"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "value": "PlatformBehavior::IsJumping"
+              },
+              "parameters": [
+                "Player",
+                "PlatformerObject"
+              ]
+            },
+            {
+              "type": {
+                "value": "BuiltinCommonInstructions::Once"
+              },
+              "parameters": []
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "value": "ChangeAnimation"
+              },
+              "parameters": [
+                "Player",
+                "=",
+                "2"
+              ]
+            },
+            {
+              "type": {
+                "value": "PlaySound"
+              },
+              "parameters": [
+                "",
+                "jump.wav",
+                "",
+                "70",
+                "1"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "inverted": true,
+                "value": "PlatformBehavior::PlatformerObjectBehavior::IsMovingEvenALittle"
+              },
+              "parameters": [
+                "Player",
+                "PlatformerObject"
+              ]
+            },
+            {
+              "type": {
+                "value": "PlatformBehavior::IsOnFloor"
+              },
+              "parameters": [
+                "Player",
+                "PlatformerObject"
+              ]
+            },
+            {
+              "type": {
+                "inverted": true,
+                "value": "AnimationName"
+              },
+              "parameters": [
+                "Player",
+                "\"Attack\""
+              ]
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "value": "SetAnimationName"
+              },
+              "parameters": [
+                "Player",
+                "\"Idle\""
+              ]
+            }
+          ]
+        },
+        {
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "value": "PlatformBehavior::IsGrabbingPlatform"
+              },
+              "parameters": [
+                "Player",
+                "PlatformerObject"
+              ]
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "value": "SetAnimationName"
+              },
+              "parameters": [
+                "Player",
+                "\"Fall\""
+              ]
+            }
+          ]
+        },
+        {
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "value": "PlatformBehavior::PlatformerObjectBehavior::IsMovingEvenALittle"
+              },
+              "parameters": [
+                "Player",
+                "PlatformerObject"
+              ]
+            },
+            {
+              "type": {
+                "inverted": true,
+                "value": "AnimationName"
+              },
+              "parameters": [
+                "Player",
+                "\"Attack\""
+              ]
+            }
+          ],
+          "actions": [],
+          "events": [
+            {
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "value": "PlatformBehavior::IsOnFloor"
+                  },
+                  "parameters": [
+                    "Player",
+                    "PlatformerObject"
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "Visible"
+                  },
+                  "parameters": [
+                    "Player"
+                  ]
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "value": "Create"
+                  },
+                  "parameters": [
+                    "",
+                    "DustParticle",
+                    "Player.PointX(\"LegsPoint\")",
+                    "Player.PointY(\"LegsPoint\")",
+                    ""
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "ChangeAnimation"
+                  },
+                  "parameters": [
+                    "Player",
+                    "=",
+                    "1"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "value": "BuiltinCommonInstructions::Or"
+              },
+              "parameters": [],
+              "subInstructions": [
+                {
+                  "type": {
+                    "value": "AnimationEnded2"
+                  },
+                  "parameters": [
+                    "Player"
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "AnimationName"
+                  },
+                  "parameters": [
+                    "Player",
+                    "\"Run\""
+                  ]
+                }
+              ]
+            }
+          ],
+          "actions": [],
+          "events": [
+            {
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "value": "PlatformBehavior::IsFalling"
+                  },
+                  "parameters": [
+                    "Player",
+                    "PlatformerObject"
+                  ]
+                },
+                {
+                  "type": {
+                    "inverted": true,
+                    "value": "Distance"
+                  },
+                  "parameters": [
+                    "Player",
+                    "MovingPlatform",
+                    "20",
+                    ""
+                  ]
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "value": "ChangeAnimation"
+                  },
+                  "parameters": [
+                    "Player",
+                    "=",
+                    "3"
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "inverted": true,
+                    "value": "PlatformBehavior::IsJumping"
+                  },
+                  "parameters": [
+                    "Player",
+                    "PlatformerObject"
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "PlatformBehavior::IsOnFloor"
+                  },
+                  "parameters": [
+                    "Player",
+                    "PlatformerObject"
+                  ]
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "value": "ChangeAnimation"
+                  },
+                  "parameters": [
+                    "Player",
+                    "=",
+                    "1"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "value": "BuiltinCommonInstructions::Or"
+              },
+              "parameters": [],
+              "subInstructions": [
+                {
+                  "type": {
+                    "value": "CollisionNP"
+                  },
+                  "parameters": [
+                    "Player",
+                    "bottomBoundary",
+                    "",
+                    "",
+                    ""
+                  ]
+                }
+              ]
+            },
+            {
+              "type": {
+                "value": "Visible"
+              },
+              "parameters": [
+                "Player"
+              ]
+            },
+            {
+              "type": {
+                "value": "BuiltinCommonInstructions::Once"
+              },
+              "parameters": []
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "value": "CameraShake::ShakeCamera"
+              },
+              "parameters": [
+                "",
+                "1",
+                "0",
+                "0",
+                ""
+              ]
+            },
+            {
+              "type": {
+                "value": "Create"
+              },
+              "parameters": [
+                "",
+                "DeathParticle",
+                "Player.CenterX()",
+                "Player.CenterY()",
+                ""
+              ]
+            },
+            {
+              "type": {
+                "value": "PlaySound"
+              },
+              "parameters": [
+                "",
+                "hurt.wav",
+                "",
+                "100",
+                "1"
+              ]
+            },
+            {
+              "type": {
+                "value": "Cache"
+              },
+              "parameters": [
+                "Player"
+              ]
+            },
+            {
+              "type": {
+                "value": "Wait"
+              },
+              "parameters": [
+                "2"
+              ]
+            },
+            {
+              "type": {
+                "value": "MettreX"
+              },
+              "parameters": [
+                "Player",
+                "=",
+                "Variable(SpawnX)"
+              ]
+            },
+            {
+              "type": {
+                "value": "MettreY"
+              },
+              "parameters": [
+                "Player",
+                "=",
+                "Variable(SpawnY)"
+              ]
+            },
+            {
+              "type": {
+                "value": "Montre"
+              },
+              "parameters": [
+                "Player",
+                ""
+              ]
+            }
+          ]
+        },
+        {
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "inverted": true,
+                "value": "PlatformBehavior::IsOnFloor"
+              },
+              "parameters": [
+                "Player",
+                "PlatformerObject"
+              ]
+            },
+            {
+              "type": {
+                "value": "PlatformBehavior::CanJump"
+              },
+              "parameters": [
+                "Player",
+                "PlatformerObject"
+              ]
+            },
+            {
+              "type": {
+                "value": "PlatformBehavior::IsJumping"
+              },
+              "parameters": [
+                "Player",
+                "PlatformerObject"
+              ]
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "value": "ChangeAnimation"
+              },
+              "parameters": [
+                "Player",
+                "=",
+                "2"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "value": "KeyPressed"
+              },
+              "parameters": [
+                "",
+                "Space"
+              ]
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "value": "PlatformBehavior::SimulateJumpKey"
+              },
+              "parameters": [
+                "Player",
+                "PlatformerObject"
               ]
             }
           ]
@@ -23949,7 +24689,7 @@
         "gridColor": 10401023,
         "gridAlpha": 0.8,
         "snap": false,
-        "zoomFactor": 0.24473848572540002,
+        "zoomFactor": 1.0222959367760815,
         "windowMask": true
       },
       "objectsGroups": [
@@ -29086,51 +29826,6 @@
               ]
             }
           ]
-        },
-        {
-          "additive": false,
-          "assetStoreId": "",
-          "destroyWhenNoParticles": true,
-          "emitterAngleA": 0,
-          "emitterAngleB": 90,
-          "emitterForceMax": 0,
-          "emitterForceMin": 0,
-          "flow": 2,
-          "maxParticleNb": 300,
-          "name": "DeathParticle",
-          "particleAlpha1": 255,
-          "particleAlpha2": 0,
-          "particleAlphaRandomness1": 0,
-          "particleAlphaRandomness2": 0,
-          "particleAngle1": 30,
-          "particleAngle2": 180,
-          "particleAngleRandomness1": 0,
-          "particleAngleRandomness2": 0,
-          "particleBlue1": 255,
-          "particleBlue2": 45,
-          "particleGravityX": 0,
-          "particleGravityY": -80,
-          "particleGreen1": 255,
-          "particleGreen2": 45,
-          "particleLifeTimeMax": 3,
-          "particleLifeTimeMin": 3,
-          "particleRed1": 255,
-          "particleRed2": 255,
-          "particleSize1": 100,
-          "particleSize2": 120,
-          "particleSizeRandomness1": 0,
-          "particleSizeRandomness2": 0,
-          "rendererParam1": 1,
-          "rendererParam2": 1,
-          "rendererType": "Quad",
-          "tags": "",
-          "tank": 1,
-          "textureParticleName": "assets\\Player_Fall_2.png",
-          "type": "ParticleSystem::ParticleEmitter",
-          "zoneRadius": 0,
-          "variables": [],
-          "effects": [],
-          "behaviors": []
         },
         {
           "assetStoreId": "4b299a9973f1156437463bf0549a65c9520c4c4627992bc0aa8b35910367beb0",
